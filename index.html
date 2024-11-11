@@ -11,11 +11,19 @@
     <h1>Calendario Foto</h1>
     <div id="nav">
       <button id="prevMonth">← Mese Precedente</button>
+      <span id="currentMonth"></span>
       <button id="nextMonth">Mese Successivo →</button>
     </div>
   </header>
   <div id="calendar"></div>
   <input type="file" id="fileInput" style="display:none;">
+  
+  <!-- Modale per visualizzare le foto -->
+  <div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImg">
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
