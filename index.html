@@ -14,25 +14,24 @@
       <span id="currentMonth"></span>
       <button id="nextMonth">Mese Successivo →</button>
     </div>
-    <div id="theme-toggle">
-      <label>
-        <input type="checkbox" id="toggleTheme"> Tema Scuro
-      </label>
-    </div>
   </header>
-  <div id="login-container">
-    <label for="username">Nome Utente: </label>
-    <input type="text" id="username" placeholder="Inserisci il nome utente">
-    <button id="login-btn">Accedi</button>
+  <div id="loginContainer">
+    <input type="text" id="username" placeholder="Inserisci il tuo nome utente">
+    <button id="loginButton">Accedi</button>
   </div>
-  <div id="calendar"></div>
-  <input type="file" id="fileInput" style="display:none;">
+  <div id="calendarContainer" style="display:none;">
+    <div id="calendar"></div>
+    <input type="file" id="fileInput" style="display:none;">
+  </div>
   
   <!-- Modale per visualizzare le foto -->
   <div id="modal" class="modal">
     <span class="close">&times;</span>
     <img class="modal-content" id="modalImg">
   </div>
+
+  <!-- Pulsante per cambiare tema -->
+  <button id="themeToggle">Cambia Tema</button>
 
   <script src="script.js"></script>
 </body>
