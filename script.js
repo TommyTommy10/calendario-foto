@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   loginButton.addEventListener('click', () => {
-    currentUser = usernameInput.value;
+    currentUser = usernameInput.value.trim();
     if (currentUser) {
       loginContainer.style.display = 'none';
       calendarContainer.style.display = 'block';
