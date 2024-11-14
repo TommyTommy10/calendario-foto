@@ -7,25 +7,15 @@ document.addEventListener('DOMContentLoaded', function() {
   const modal = document.getElementById('modal');
   const modalImg = document.getElementById('modalImg');
   const closeModal = document.getElementsByClassName('close')[0];
-  const toggleTheme = document.getElementById('toggleTheme');
-  const loginContainer = document.getElementById('login-container');
+  const loginContainer = document.getElementById('loginContainer');
+  const calendarContainer = document.getElementById('calendarContainer');
   const usernameInput = document.getElementById('username');
-  const loginBtn = document.getElementById('login-btn');
-  
+  const loginButton = document.getElementById('loginButton');
+  const themeToggle = document.getElementById('themeToggle');
+
   let selectedDay = null;
   let currentDate = new Date();
-  let username = '';
-
-  loginBtn.addEventListener('click', () => {
-    username = usernameInput.value.trim();
-    if (username) {
-      loginContainer.style.display = 'none';
-      calendar.style.display = 'grid';
-      createCalendar(currentDate.getFullYear(), currentDate.getMonth());
-    } else {
-      alert('Per favore, inserisci un nome utente.');
-    }
-  });
+  let currentUser = '';
 
   function createCalendar(year, month) {
     const firstDay = new Date(year, month).getDay();
@@ -43,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
       dayCell.classList.add('day');
       dayCell.textContent = i;
 
-      const savedImage = localStorage.getItem(`photo-${username}-${year}-${month}-${i}`);
+      const savedImage = localStorage.getItem(`photo-${currentUser}-${year}-${month}-${i}`);
       if (savedImage) {
         const img = document.createElement('img');
         img.src = savedImage;
@@ -72,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
         img.style.width = '100%';
         selectedDay.dayCell.appendChild(img);
 
-        localStorage.setItem(`photo-${username}-${selectedDay.year}-${selectedDay.month}-${selectedDay.day}`, e.target.result);
+        localStorage.setItem(`photo-${currentUser}-${selectedDay.year}-${selectedDay.month}-${selectedDay.day}`, e.target.result);
       };
       reader.readAsDataURL(file);
     }
@@ -101,8 +91,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  toggleTheme.addEventListener('change', () => {
-    document.body.classList.toggle('dark-mode');
+  loginButton.addEventListener('click', () => {
+    currentUser = usernameInput.value;
+    if (currentUser) {
+      loginContainer.style.display = 'none';
+      calendarContainer.style.display = 'block';
+      createCalendar(currentDate.getFullYear(), currentDate.getMonth());
+    }
   });
 
-  // Inizialmente nascondiamo il calendario finché l'utente non
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+  });
+});
